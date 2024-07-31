@@ -1,6 +1,7 @@
 let gold = 0;
 let goldPerClick = 1;
 let upgradeCost = 10;
+let upgradeLevel = 1; 
 
 document.getElementById('collect-button').onclick = () => {
     gold += goldPerClick;
@@ -11,7 +12,8 @@ document.getElementById('upgrade-click').onclick = () => {
     if (gold >= upgradeCost) {
         gold -= upgradeCost;
         goldPerClick += 1;
-        upgradeCost = Math.round(upgradeCost * 1.5); // Increase the cost by 1.5 times
+        upgradeLevel += 1; 
+        upgradeCost = Math.round(upgradeCost * 1.5); 
         updateGoldDisplay();
         updateUpgradeButton();
     }
@@ -23,6 +25,7 @@ function updateGoldDisplay() {
 
 function updateUpgradeButton() {
     document.getElementById('upgrade-click').innerText = `Upgrade Click (Cost: ${upgradeCost} Gold) - Current: ${goldPerClick} per click`;
+    document.getElementById('upgrade-level').innerText = `Level: ${upgradeLevel}`;
 }
 
 updateUpgradeButton();
