@@ -62,13 +62,13 @@ function updateGoldDisplay() {
 }
 
 function updateUpgradeButton() {
-    document.getElementById('upgrade-click').innerText = `Upgrade Click (Cost: ${upgradeCost} Gold) - Current: ${goldPerClick} per click`;
+    document.getElementById('upgrade-click').innerText = `Upgrade Click (${upgradeCost} Gold) - Current: ${goldPerClick} per click`;
     document.getElementById('upgrade-level').innerText = `Level: ${upgradeLevel}`; 
 }
 
 function updateAutoClickerButton() {
-    document.getElementById('auto-upgrade-click').innerText = `Upgrade Auto-Clicker (Cost: ${autoClickerUpgradeCost} Gold)`;
-    document.getElementById('auto-upgrade-level').innerText = `Auto-Clicker Level: ${autoClickerLevel}`;
+    document.getElementById('auto-upgrade-click').innerText = `Upgrade Auto-Clicker (${autoClickerUpgradeCost} Gold)`;
+    document.getElementById('auto-upgrade-level').innerText = `Auto-Clicker Level: ${autoClickerLevel} (1000)`;
 }
 
 function checkAutoClickerAvailability() {
