@@ -37,3 +37,14 @@ button {
     left: 10px;
     display: none;
 }
+
+#gold-mine-button {
+    background-color: gray;
+    color: white;
+    position: relative;
+    left: 10px; 
+}
+
+#gold-mine-upgrades {
+    margin-top: 20px;
+}
