@@ -8,6 +8,21 @@ let autoClickerSpeed = 1000;
 let autoClickerUpgradeCost = 25;
 let autoClickerLevel = 1;
 
+// Gold Mine Variables
+let goldMineActive = false;
+let goldMineCost = 5000;
+let goldMinePayout = 1000;
+let goldMineLevel = 1;
+let goldMineInterval = 60000;
+let goldCartLevel = 1;
+let GoldCartUpgradeCost = 500;
+let goldMineUpgradeCost = 1000;
+let mineTimer;
+
+
+
+document.getElementById('gold-mine-button').innerText = 'Open Gold Mine (${goldMineCost} Gold)';
+
 document.getElementById('collect-button').onclick = () => {
     gold += goldPerClick;
     updateGoldDisplay();
