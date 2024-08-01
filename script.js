@@ -20,7 +20,7 @@ let goldMineUpgradeCost = 1000;
 let mineTimer;
 
 // Initialize the UI
-document.getElementById('gold-mine-button').innerText = `Open Gold Mine (${goldMineCost} Gold)`;
+document.getElementById('gold-mine-button').innerText = `Open Gold Mine (${goldMineCost} Gold)`; // Initial state text
 
 // Event Listeners
 document.getElementById('collect-button').onclick = () => {
@@ -104,14 +104,29 @@ document.getElementById('upgrade-mine-button').onclick = () => {
 // Functions
 function activateGoldMine() {
     goldMineActive = true;
-    document.getElementById('gold-mine-button').innerText = `Gold Mine Active - Payout: ${goldMinePayout}`;
+    document.getElementById('gold-mine-button').innerText = `Gold Mine Active - Payout: ${goldMinePayout}`; // Active state text
     document.getElementById('gold-mine-button').style.backgroundColor = 'green';
     document.getElementById('gold-mine-upgrades').style.display = 'block';
     mineTimer = setInterval(() => {
         gold += goldMinePayout;
         updateGoldDisplay();
     }, goldMineInterval);
+    startMineTimer(); // Start visual countdown timer
     updateGoldMineUI();
+}
+
+function startMineTimer() {
+    let countdown = 0;
+    const countdownInterval = setInterval(() => {
+        countdown += 100;
+        let progress = Math.min(countdown / goldMineInterval, 1); // Calculate progress
+        document.getElementById('gold-mine-button').style.backgroundImage = 
+            `linear-gradient(to right, green ${progress * 100}%, gray ${progress * 100}%)`;
+        if (progress === 1) {
+            clearInterval(countdownInterval);
+            startMineTimer(); // Restart timer for continuous updates
+        }
+    }, 100);
 }
 
 function updateGoldDisplay() {
