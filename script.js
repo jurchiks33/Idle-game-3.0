@@ -4,7 +4,7 @@ let goldPerClick = 1;
 let upgradeCost = 10;
 let upgradeLevel = 1; 
 let autoClickerInterval = null;
-let autoClickerSpeed = 10; // 1 second, changed to 0.1 for testing
+let autoClickerSpeed = 10;   // adjusted for test from 1000 to 10
 let autoClickerUpgradeCost = 25;
 let autoClickerLevel = 1;
 
@@ -130,7 +130,7 @@ function updateAutoClickerButton() {
 
 function updateGoldMineUI() {
     document.getElementById('gold-mine-button').innerText = `Gold Mine Active - Payout: ${goldMinePayout}`;
-    document.getElementById('mine-level').innerText = `Level: ${goldMineLevel}`;
+    document.getElementById('mine-level').innerText = `Mine Level: ${goldMineLevel}`;
     document.getElementById('cart-level').innerText = `Cart Level: ${goldCartLevel}`;
     document.getElementById('upgrade-carts-button').innerText = `Upgrade Gold Carts (Cost: ${goldCartUpgradeCost} Gold)`;
     document.getElementById('upgrade-mine-button').innerText = `Upgrade Gold Mine (Cost: ${goldMineUpgradeCost} Gold)`;
