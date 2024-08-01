@@ -1,0 +1,52 @@
+
+--------------------FIXES NEEDED------------
+1. upgrades for gold mine are displayed in a wong order.
+2. need to adjust gold mine payout ratio. liiks fixed and very small.
+3. button for gold mine should display "Open Gold Mine: 5000" while inactive
+
+----------------ROAD MAP-------------
+---====READY====--- Collect Gold:
+
+---====READY====--- Manually click a button to collect a small amount of gold.
+---====READY====--- Auto-Clicker:
+
+---====READY====--- Automatically collects gold at regular intervals without manual clicks.
+---====READY====--- Mines:
+
+---====READY====--- Purchase and upgrade mines that generate gold over time. Each mine can have different production rates and upgrade levels.
+Workers:
+
+Hire workers that collect gold over time. Workers can be upgraded to increase their efficiency.
+Gold Rush:
+
+A temporary boost that significantly increases gold acquisition for a short period.
+Treasure Hunts:
+
+Send characters on expeditions to find treasures. These expeditions can take time and have varying rewards.
+Investments:
+
+Invest gold in different schemes or businesses to earn returns over time. Investments can have varying levels of risk and reward.
+Quests and Challenges:
+
+Complete specific quests or challenges that reward gold upon completion. These can be daily or weekly events.
+Trading:
+
+Trade resources or items for gold. The value can fluctuate based on an in-game economy.
+Random Events:
+
+Events that occur randomly and can result in gold rewards (e.g., finding a chest of gold, winning a small lottery).
+Gold Converter:
+
+Convert other in-game resources into gold. This can involve different conversion rates and limits.
+Passive Income Sources:
+
+Assets that generate a steady stream of gold without active player interaction. Examples include land, shops, or royalties from in-game intellectual properties.
+Achievements and Milestones:
+
+Earn gold by reaching certain achievements or milestones in the game.
+Upgrades and Multipliers:
+
+Upgrade certain abilities or items that increase the rate at which gold is earned, either manually or passively.
+Donation or Patronage:
+
+Characters or in-game entities that donate gold to the player at regular intervals.
