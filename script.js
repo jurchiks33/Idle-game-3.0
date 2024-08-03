@@ -9,7 +9,7 @@ let autoClickerUpgradeCost = 25;
 let autoClickerLevel = 1;
 
 // Gold Mine Variables
-let goldMineActive = false;
+let goldMineActive = false; // Indicates if gold mine is active
 let goldMineCost = 5000;
 let goldMinePayout = 1000;
 let goldMineLevel = 1;
@@ -98,15 +98,17 @@ document.getElementById('upgrade-mine-button').onclick = () => {
         goldMineUpgradeCost = Math.round(goldMineUpgradeCost * 1.5); // Increase cost by 50%
         updateGoldDisplay();
         updateGoldMineUI();
+        updateMinePayout(); // Update payout amount immediately
     }
 };
 
 // Functions
 function activateGoldMine() {
-    goldMineActive = true;
-    document.getElementById('gold-mine-button').innerText = `Gold Mine Active - Payout: ${goldMinePayout}`; // Active state text
-    document.getElementById('gold-mine-button').style.backgroundColor = 'green';
-    document.getElementById('gold-mine-upgrades').style.display = 'block';
+    goldMineActive = true; // Set gold mine as active
+    document.getElementById('gold-mine-button').style.display = 'none'; // Hide the button
+    document.getElementById('mine-payout').style.display = 'block'; // Show payout
+    document.getElementById('gold-mine-upgrades').style.display = 'block'; // Show upgrades
+    updateMinePayout(); // Update payout display
     mineTimer = setInterval(() => {
         gold += goldMinePayout;
         updateGoldDisplay();
@@ -120,7 +122,7 @@ function startMineTimer() {
     const countdownInterval = setInterval(() => {
         countdown += 100;
         let progress = Math.min(countdown / goldMineInterval, 1); // Calculate progress
-        document.getElementById('gold-mine-button').style.backgroundImage = 
+        document.getElementById('mine-payout').style.backgroundImage = 
             `linear-gradient(to right, green ${progress * 100}%, gray ${progress * 100}%)`;
         if (progress === 1) {
             clearInterval(countdownInterval);
@@ -144,11 +146,14 @@ function updateAutoClickerButton() {
 }
 
 function updateGoldMineUI() {
-    document.getElementById('gold-mine-button').innerText = `Gold Mine Active - Payout: ${goldMinePayout}`;
     document.getElementById('mine-level').innerText = `Mine Level: ${goldMineLevel}`;
     document.getElementById('cart-level').innerText = `Cart Level: ${goldCartLevel}`;
     document.getElementById('upgrade-carts-button').innerText = `Upgrade Gold Carts (Cost: ${goldCartUpgradeCost} Gold)`;
     document.getElementById('upgrade-mine-button').innerText = `Upgrade Gold Mine (Cost: ${goldMineUpgradeCost} Gold)`;
+}
+
+function updateMinePayout() {
+    document.getElementById('mine-payout').innerText = `Payout: ${goldMinePayout} Gold`;
 }
 
 function checkAutoClickerAvailability() {
