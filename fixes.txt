@@ -4,7 +4,10 @@
 2. need to adjust gold mine payout ratio. fixed and very small.
 3. ---====FIXED====---button for gold mine should display "Open Gold Mine: 5000" while inactive
 4. All buttons should be a same size, and text, currently they are increasing as number increases
-
+5. need to reduce price of upgrade to click button.
+6. need to move price per upgrade outside button so it doesnt get extra long a fix button size
+7. need to display max and current upgrade level.
+8. make countdown for a timed skills.
 
 
 
@@ -18,9 +21,9 @@
 ---====READY====--- Mines:
 
 ---====READY====--- Purchase and upgrade mines that generate gold over time. Each mine can have different production rates and upgrade levels.
-Workers:
+---====READY====---Workers:
 
-Hire workers that collect gold over time. Workers can be upgraded to increase their efficiency.
+---====READY====---Hire workers that collect gold over time. Workers can be upgraded to increase their efficiency.
 Gold Rush:
 
 A temporary boost that significantly increases gold acquisition for a short period.

@@ -100,8 +100,8 @@ document.getElementById('upgrade-mine-button').onclick = () => {
     if (gold >= goldMineUpgradeCost) {
         gold -= goldMineUpgradeCost;
         goldMineLevel += 1;
-        goldMinePayout = Math.round(goldMinePayout * 1.0075); // Increase payout by 0.75%
-        goldMineUpgradeCost = Math.round(goldMineUpgradeCost * 1.5); // Increase cost by 50%
+        goldMinePayout = Math.round(goldMinePayout * 1.075); // Increase payout by 0.75%
+        goldMineUpgradeCost = Math.round(goldMineUpgradeCost * 1.25); // Increase cost by 50%
         updateGoldDisplay();
         updateGoldMineUI();
         updateMinePayout(); // Update payout amount immediately
@@ -118,6 +118,7 @@ document.getElementById('hire-workers-button').onclick = () => {
         updateWorkersButton();
         updateGoldMineUI(); // Update mine UI to reflect new earnings
         updateMinePayout(); // Update payout amount immediately
+        updateUpgradeButton(); // Update click upgrade button to reflect new earnings
     }
 };
 
@@ -153,11 +154,11 @@ function startMineTimer() {
 }
 
 function updateGoldDisplay() {
-    document.getElementById('gold-amount').innerText = gold;
+    document.getElementById('gold-amount').innerText = `Gold: ${gold.toFixed(2)}`;
 }
 
 function updateUpgradeButton() {
-    document.getElementById('upgrade-click').innerText = `Upgrade Click (${upgradeCost} Gold) - Current: ${goldPerClick} per click`;
+    document.getElementById('upgrade-click').innerText = `Upgrade Click (${upgradeCost} Gold) - Current: ${Math.round(goldPerClick * earningsMultiplier)} per click`;
     document.getElementById('upgrade-level').innerText = `Level: ${upgradeLevel}`; 
 }
 
