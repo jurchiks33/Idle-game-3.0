@@ -4,7 +4,7 @@ let goldPerClick = 1;
 let upgradeCost = 10;
 let upgradeLevel = 1; 
 let autoClickerInterval = null;
-let autoClickerSpeed = 10;   // adjusted for test from 1000 to 10
+let autoClickerSpeed = 10; // Set to 1000 for a real scenario
 let autoClickerUpgradeCost = 25;
 let autoClickerLevel = 1;
 
@@ -117,6 +117,7 @@ document.getElementById('hire-workers-button').onclick = () => {
         updateGoldDisplay();
         updateWorkersButton();
         updateGoldMineUI(); // Update mine UI to reflect new earnings
+        updateMinePayout(); // Update payout amount immediately
     }
 };
 
@@ -175,7 +176,11 @@ function updateGoldMineUI() {
 }
 
 function updateMinePayout() {
-    document.getElementById('mine-payout').innerText = `Payout: ${goldMinePayout * earningsMultiplier} Gold`;
+    document.getElementById('mine-payout').innerText = `Payout: ${Math.round(goldMinePayout * earningsMultiplier)} Gold`;
+}
+
+function updateWorkersButton() {
+    document.getElementById('hire-workers-button').innerText = `Hire Workers (${hireWorkersCost} Gold)`;
 }
 
 function checkAutoClickerAvailability() {
@@ -188,3 +193,5 @@ function checkAutoClickerAvailability() {
 updateUpgradeButton();
 updateAutoClickerButton();
 updateGoldMineUI();
+updateMinePayout();
+updateWorkersButton();
