@@ -19,8 +19,14 @@ let goldCartUpgradeCost = 500;
 let goldMineUpgradeCost = 1000;
 let mineTimer;
 
+//Workers Variables
+let workersLevel = 0;
+let hireWorkersCost = 25000;
+let earningsMultiplier = 1;
+
 // Initialize the UI
 document.getElementById('gold-mine-button').innerText = `Open Gold Mine (${goldMineCost} Gold)`; // Initial state text
+document.getElementById('hire-workers-button').innerText = 'Hire Workers (${hireWorkersCost} Gold)';
 
 // Event Listeners
 document.getElementById('collect-button').onclick = () => {
@@ -102,11 +108,24 @@ document.getElementById('upgrade-mine-button').onclick = () => {
     }
 };
 
+document.getElementById('hire-workers-button').onclick = () => {
+    if (gold >= hireWorkersCost) {
+        gold -= hireWorkersCost;
+        workersLevel += 1;
+        earningsMultiplier = 1 + (workersLevel * 0.1);
+        hireWorkersCost = Math.round(hireWorkersCost * 2.3);
+        updateGoldDisplay();
+        updateWorkersButton();
+        updateGoldMineUI();
+    }
+}
+
 // Functions
 function activateGoldMine() {
     goldMineActive = true; // Set gold mine as active
     document.getElementById('gold-mine-button').style.display = 'none'; // Hide the button
     document.getElementById('mine-payout').style.display = 'block'; // Show payout
+    document.getElementById('')
     document.getElementById('gold-mine-upgrades').style.display = 'block'; // Show upgrades
     updateMinePayout(); // Update payout display
     mineTimer = setInterval(() => {
