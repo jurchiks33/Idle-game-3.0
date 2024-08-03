@@ -48,6 +48,19 @@ button {
     transition: background-size 0.1s linear; /* Smooth progress bar animation */
 }
 
+#mine-payout {
+    display: none; /* Hide initially */
+    position: relative;
+    left: 10px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.1s linear; /* Smooth progress bar animation */
+}
+
 #gold-mine-upgrades {
     margin-top: 20px;
 }
