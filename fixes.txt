@@ -1,8 +1,12 @@
 
 --------------------FIXES NEEDED------------
-1. upgrades for gold mine are displayed in a wong order.
-2. need to adjust gold mine payout ratio. liiks fixed and very small.
-3. button for gold mine should display "Open Gold Mine: 5000" while inactive
+1. ---====FIXED====--- upgrades for gold mine are displayed in a wong order.
+2. need to adjust gold mine payout ratio. fixed and very small.
+3. ---====FIXED====---button for gold mine should display "Open Gold Mine: 5000" while inactive
+4. All buttons should be a same size, and text, currently they are increasing as number increases
+
+
+
 
 ----------------ROAD MAP-------------
 ---====READY====--- Collect Gold:
