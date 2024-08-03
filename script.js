@@ -1,6 +1,6 @@
 // script.js
 let gold = 0;
-let goldPerClick = 1;
+let goldPerClick = 1;  // increasing from 1 to 100 for testing
 let upgradeCost = 10;
 let upgradeLevel = 1; 
 let autoClickerInterval = null;
