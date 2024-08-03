@@ -1,6 +1,6 @@
 // script.js
 let gold = 0;
-let goldPerClick = 1;  // increasing from 1 to 100 for testing
+let goldPerClick = 1;
 let upgradeCost = 10;
 let upgradeLevel = 1; 
 let autoClickerInterval = null;
@@ -19,18 +19,18 @@ let goldCartUpgradeCost = 500;
 let goldMineUpgradeCost = 1000;
 let mineTimer;
 
-//Workers Variables
+// Workers Variables
 let workersLevel = 0;
 let hireWorkersCost = 25000;
-let earningsMultiplier = 1;
+let earningsMultiplier = 1; // Start with no multiplier
 
 // Initialize the UI
 document.getElementById('gold-mine-button').innerText = `Open Gold Mine (${goldMineCost} Gold)`; // Initial state text
-document.getElementById('hire-workers-button').innerText = 'Hire Workers (${hireWorkersCost} Gold)';
+document.getElementById('hire-workers-button').innerText = `Hire Workers (${hireWorkersCost} Gold)`; // Initial state text
 
 // Event Listeners
 document.getElementById('collect-button').onclick = () => {
-    gold += goldPerClick;
+    gold += goldPerClick * earningsMultiplier;
     updateGoldDisplay();
 }
 
@@ -64,7 +64,7 @@ document.getElementById('auto-upgrade-click').onclick = () => {
         if (autoClickerInterval) {
             clearInterval(autoClickerInterval);
             autoClickerInterval = setInterval(() => {
-                gold += goldPerClick;
+                gold += goldPerClick * earningsMultiplier;
                 updateGoldDisplay();
             }, autoClickerSpeed);
         }
@@ -78,7 +78,7 @@ document.getElementById('auto-click-button').onclick = () => {
         document.getElementById('auto-click-button').innerText = 'Start Auto-Clicker'; 
     } else {
         autoClickerInterval = setInterval(() => {
-            gold += goldPerClick;
+            gold += goldPerClick * earningsMultiplier;
             updateGoldDisplay();
         }, autoClickerSpeed);
         document.getElementById('auto-click-button').innerText = 'Stop Auto-Clicker'; 
@@ -112,21 +112,21 @@ document.getElementById('hire-workers-button').onclick = () => {
     if (gold >= hireWorkersCost) {
         gold -= hireWorkersCost;
         workersLevel += 1;
-        earningsMultiplier = 1 + (workersLevel * 0.1);
-        hireWorkersCost = Math.round(hireWorkersCost * 2.3);
+        earningsMultiplier = 1 + (workersLevel * 0.1); // Increase earnings by 10% per worker level
+        hireWorkersCost = Math.round(hireWorkersCost * 2.3); // Increase cost by 2.3 times
         updateGoldDisplay();
         updateWorkersButton();
-        updateGoldMineUI();
+        updateGoldMineUI(); // Update mine UI to reflect new earnings
     }
-}
+};
 
 // Functions
 function activateGoldMine() {
     goldMineActive = true; // Set gold mine as active
     document.getElementById('gold-mine-button').style.display = 'none'; // Hide the button
     document.getElementById('mine-payout').style.display = 'block'; // Show payout
-    document.getElementById('workers-level').style.display = 'block';
-    document.getElementById('hire-workers-button').style.display = 'block';
+    document.getElementById('workers-level').style.display = 'block'; // Show workers level
+    document.getElementById('hire-workers-button').style.display = 'block'; // Show hire workers button
     document.getElementById('gold-mine-upgrades').style.display = 'block'; // Show upgrades
     updateMinePayout(); // Update payout display
     mineTimer = setInterval(() => {
@@ -170,9 +170,9 @@ function updateGoldMineUI() {
     document.getElementById('cart-level').innerText = `Cart Level: ${goldCartLevel}`;
     document.getElementById('upgrade-carts-button').innerText = `Upgrade Gold Carts (Cost: ${goldCartUpgradeCost} Gold)`;
     document.getElementById('upgrade-mine-button').innerText = `Upgrade Gold Mine (Cost: ${goldMineUpgradeCost} Gold)`;
-    document.getElementById('workers-level').innerText = 'Workers Level: ${workersLevel}';
-    document.getElementById(hire-workers-button).innerText = 'Hire Workers (${hireWorkersCost} Gold)';
-}   
+    document.getElementById('workers-level').innerText = `Workers Level: ${workersLevel}`; // Update workers level
+    document.getElementById('hire-workers-button').innerText = `Hire Workers (${hireWorkersCost} Gold)`; // Update hire workers cost
+}
 
 function updateMinePayout() {
     document.getElementById('mine-payout').innerText = `Payout: ${goldMinePayout * earningsMultiplier} Gold`;
