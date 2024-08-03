@@ -125,11 +125,12 @@ function activateGoldMine() {
     goldMineActive = true; // Set gold mine as active
     document.getElementById('gold-mine-button').style.display = 'none'; // Hide the button
     document.getElementById('mine-payout').style.display = 'block'; // Show payout
-    document.getElementById('')
+    document.getElementById('workers-level').style.display = 'block';
+    document.getElementById('hire-workers-button').style.display = 'block';
     document.getElementById('gold-mine-upgrades').style.display = 'block'; // Show upgrades
     updateMinePayout(); // Update payout display
     mineTimer = setInterval(() => {
-        gold += goldMinePayout;
+        gold += goldMinePayout * earningsMultiplier;
         updateGoldDisplay();
     }, goldMineInterval);
     startMineTimer(); // Start visual countdown timer
@@ -169,10 +170,12 @@ function updateGoldMineUI() {
     document.getElementById('cart-level').innerText = `Cart Level: ${goldCartLevel}`;
     document.getElementById('upgrade-carts-button').innerText = `Upgrade Gold Carts (Cost: ${goldCartUpgradeCost} Gold)`;
     document.getElementById('upgrade-mine-button').innerText = `Upgrade Gold Mine (Cost: ${goldMineUpgradeCost} Gold)`;
-}
+    document.getElementById('workers-level').innerText = 'Workers Level: ${workersLevel}';
+    document.getElementById(hire-workers-button).innerText = 'Hire Workers (${hireWorkersCost} Gold)';
+}   
 
 function updateMinePayout() {
-    document.getElementById('mine-payout').innerText = `Payout: ${goldMinePayout} Gold`;
+    document.getElementById('mine-payout').innerText = `Payout: ${goldMinePayout * earningsMultiplier} Gold`;
 }
 
 function checkAutoClickerAvailability() {
