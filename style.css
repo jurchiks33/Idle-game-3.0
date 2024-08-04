@@ -29,22 +29,19 @@ button {
     display: block; 
     position: relative;
     left: 10px; 
-    width: 5cm;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 7cm; /* Set the width of all buttons to 7 cm */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
 }
 
 button:hover {
-    overflow: visible;
-    white-space: normal;
+    overflow: visible; /* Display full text on hover */
+    white-space: normal; /* Allow text to wrap */
 }
 
 #auto-click-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    display: none;
+    margin-bottom: 20px; /* Add space below the button */
 }
 
 #gold-mine-button {
