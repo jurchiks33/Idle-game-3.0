@@ -3,7 +3,7 @@
 1. ---====FIXED====--- upgrades for gold mine are displayed in a wong order.
 2. need to adjust gold mine payout ratio. fixed and very small.
 3. ---====FIXED====---button for gold mine should display "Open Gold Mine: 5000" while inactive
-4. All buttons should be a same size, and text, currently they are increasing as number increases
+4. ---====FIXED====---All buttons should be a same size, and text, currently they are increasing as number increases
 5. need to reduce price of upgrade to click button.
 6. need to move price per upgrade outside button so it doesnt get extra long a fix button size
 7. need to display max and current upgrade level.
@@ -24,6 +24,12 @@
 ---====READY====---Workers:
 
 ---====READY====---Hire workers that collect gold over time. Workers can be upgraded to increase their efficiency.
+
+---====READY====---Add factory building to the game, factory should open new game container on a screen with further upgrades
+Fix script for a factoy upgrades, where each upgrade is opening new boxes for a skills.
+work out skills.
+introduce in a final skill boxes infinite skills for upgrades, increasing payout and reducing upgrade costs.
+
 Gold Rush:
 
 A temporary boost that significantly increases gold acquisition for a short period.
