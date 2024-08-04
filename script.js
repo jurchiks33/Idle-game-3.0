@@ -199,6 +199,11 @@ function updateWorkersButton() {
     document.getElementById('hire-workers-button').innerText = `Hire Workers (${hireWorkersCost} Gold)`;
 }
 
+function updateFactoryButton() {
+    document.getElementById('factory-level').innerText = 'Factory Level: ${factoryLevel}';
+    document.getElementById('factory-button').innerText = 'Build Factory (${factoryCost} Gold)';
+}
+
 function checkAutoClickerAvailability() {
     if (upgradeLevel >= 10) { 
         document.getElementById('auto-click-button').style.display = 'block';
