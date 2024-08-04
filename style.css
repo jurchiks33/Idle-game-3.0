@@ -35,6 +35,11 @@ button {
     text-overflow: ellipsis;
 }
 
+button:hover {
+    overflow: visible;
+    white-space: normal;
+}
+
 #auto-click-button {
     position: absolute;
     top: 10px;
