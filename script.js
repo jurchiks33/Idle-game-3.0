@@ -127,6 +127,16 @@ document.getElementById('hire-workers-button').onclick = () => {
     }
 };
 
+document.getElementById('factory-button').onclick = () => {
+    if (gold >= factoryCost) {
+        gold -= factoryCost;
+        factoryLevel += 1;
+        factoryCost = Math.round(factoryCost * 1.35); // factory price multiple
+        updateGoldDisplay();
+        updateFactoryButton();
+    }
+};
+
 // Functions
 function activateGoldMine() {
     goldMineActive = true; // Set gold mine as active
