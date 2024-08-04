@@ -24,9 +24,14 @@ let workersLevel = 0;
 let hireWorkersCost = 25000;
 let earningsMultiplier = 1; // Start with no multiplier
 
+// Factory variables
+let factoryLevel = 0;
+let factoryCost = 75000;
+
 // Initialize the UI
 document.getElementById('gold-mine-button').innerText = `Open Gold Mine (${goldMineCost} Gold)`; // Initial state text
 document.getElementById('hire-workers-button').innerText = `Hire Workers (${hireWorkersCost} Gold)`; // Initial state text
+document.getElementById('factory-button').innerText = 'Build Factory (${factoryCost} Gold';
 
 // Event Listeners
 document.getElementById('collect-button').onclick = () => {
