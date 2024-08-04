@@ -29,6 +29,10 @@ button {
     display: block; 
     position: relative;
     left: 10px; 
+    width: 5cm;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #auto-click-button {
