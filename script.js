@@ -24,14 +24,14 @@ let workersLevel = 0;
 let hireWorkersCost = 25000;
 let earningsMultiplier = 1; // Start with no multiplier
 
-// Factory variables
+// Factory Variables
 let factoryLevel = 0;
 let factoryCost = 75000;
 
 // Initialize the UI
 document.getElementById('gold-mine-button').innerText = `Open Gold Mine (${goldMineCost} Gold)`; // Initial state text
 document.getElementById('hire-workers-button').innerText = `Hire Workers (${hireWorkersCost} Gold)`; // Initial state text
-document.getElementById('factory-button').innerText = 'Build Factory (${factoryCost} Gold';
+document.getElementById('factory-button').innerText = `Build Factory (${factoryCost} Gold)`; // Initial state text
 
 // Event Listeners
 document.getElementById('collect-button').onclick = () => {
@@ -105,8 +105,8 @@ document.getElementById('upgrade-mine-button').onclick = () => {
     if (gold >= goldMineUpgradeCost) {
         gold -= goldMineUpgradeCost;
         goldMineLevel += 1;
-        goldMinePayout = Math.round(goldMinePayout * 1.075); // Increase payout by 0.75%
-        goldMineUpgradeCost = Math.round(goldMineUpgradeCost * 1.25); // Increase cost by 50%
+        goldMinePayout = Math.round(goldMinePayout * 1.0075); // Increase payout by 0.75%
+        goldMineUpgradeCost = Math.round(goldMineUpgradeCost * 1.5); // Increase cost by 50%
         updateGoldDisplay();
         updateGoldMineUI();
         updateMinePayout(); // Update payout amount immediately
@@ -131,7 +131,7 @@ document.getElementById('factory-button').onclick = () => {
     if (gold >= factoryCost) {
         gold -= factoryCost;
         factoryLevel += 1;
-        factoryCost = Math.round(factoryCost * 1.35); // factory price multiple
+        factoryCost = Math.round(factoryCost * 1.35); // Increase cost by 35%
         updateGoldDisplay();
         updateFactoryButton();
     }
@@ -144,6 +144,8 @@ function activateGoldMine() {
     document.getElementById('mine-payout').style.display = 'block'; // Show payout
     document.getElementById('workers-level').style.display = 'block'; // Show workers level
     document.getElementById('hire-workers-button').style.display = 'block'; // Show hire workers button
+    document.getElementById('factory-level').style.display = 'block'; // Show factory level
+    document.getElementById('factory-button').style.display = 'block'; // Show factory button
     document.getElementById('gold-mine-upgrades').style.display = 'block'; // Show upgrades
     updateMinePayout(); // Update payout display
     mineTimer = setInterval(() => {
@@ -200,8 +202,8 @@ function updateWorkersButton() {
 }
 
 function updateFactoryButton() {
-    document.getElementById('factory-level').innerText = 'Factory Level: ${factoryLevel}';
-    document.getElementById('factory-button').innerText = 'Build Factory (${factoryCost} Gold)';
+    document.getElementById('factory-level').innerText = `Factory Level: ${factoryLevel}`;
+    document.getElementById('factory-button').innerText = `Build Factory (${factoryCost} Gold)`;
 }
 
 function checkAutoClickerAvailability() {
@@ -216,3 +218,4 @@ updateAutoClickerButton();
 updateGoldMineUI();
 updateMinePayout();
 updateWorkersButton();
+updateFactoryButton();

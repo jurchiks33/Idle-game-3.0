@@ -29,7 +29,7 @@ button {
     display: block; 
     position: relative;
     left: 10px; 
-    width: 7cm; /* Set the width of all buttons to 7 cm */
+    width: 5cm; /* Set the width of all buttons to 5 cm */
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Add ellipsis for overflow text */
