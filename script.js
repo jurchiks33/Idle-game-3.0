@@ -11,7 +11,7 @@ let autoClickerLevel = 1;
 // Gold Mine Variables
 let goldMineActive = false; // Indicates if gold mine is active
 let goldMineCost = 5000;
-let goldMinePayout = 1000;
+let goldMinePayout = 10000;
 let goldMineLevel = 1;
 let goldMineInterval = 60000; // 60 seconds
 let goldCartLevel = 1;
@@ -211,15 +211,15 @@ function updateGameContainer2() {
     const container2 = document.getElementById('game-container-2');
     container2.style.display = 'block'; // Show the second game container
 
-    // Calculate the number of cubes to unlock
-    const cubesToUnlock = factoryLevel * 2;
+    // Generate the cubes
+    const cubesContainer = document.getElementById('cubes-container');
+    cubesContainer.innerHTML = ''; // Clear previous cubes
     for (let i = 1; i <= 20; i++) {
-        const cube = document.getElementById(`cube-${i}`);
-        if (i <= cubesToUnlock) {
-            cube.style.display = 'block';
-        } else {
-            cube.style.display = 'none';
-        }
+        const cube = document.createElement('div');
+        cube.className = 'cube';
+        cube.id = `cube-${i}`;
+        cube.style.display = i <= factoryLevel * 2 ? 'block' : 'none'; // Show cubes based on factory level
+        cubesContainer.appendChild(cube);
     }
 }
 
