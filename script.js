@@ -134,6 +134,7 @@ document.getElementById('factory-button').onclick = () => {
         factoryCost = Math.round(factoryCost * 1.35); // Increase cost by 35%
         updateGoldDisplay();
         updateFactoryButton();
+        updateGameContainer2();
     }
 };
 
@@ -204,6 +205,22 @@ function updateWorkersButton() {
 function updateFactoryButton() {
     document.getElementById('factory-level').innerText = `Factory Level: ${factoryLevel}`;
     document.getElementById('factory-button').innerText = `Build Factory (${factoryCost} Gold)`;
+}
+
+function updateGameContainer2() {
+    const container2 = document.getElementById('game-container-2');
+    container2.style.display = 'block'; // Show the second game container
+
+    // Calculate the number of cubes to unlock
+    const cubesToUnlock = factoryLevel * 2;
+    for (let i = 1; i <= 20; i++) {
+        const cube = document.getElementById(`cube-${i}`);
+        if (i <= cubesToUnlock) {
+            cube.style.display = 'block';
+        } else {
+            cube.style.display = 'none';
+        }
+    }
 }
 
 function checkAutoClickerAvailability() {

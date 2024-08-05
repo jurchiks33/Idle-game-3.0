@@ -35,7 +35,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     display: block; 
-    width: 5cm; /* Set the width of all buttons to 5 cm */
+    width: 8cm; /* Set the width of all buttons to 5 cm */
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Add ellipsis for overflow text */
