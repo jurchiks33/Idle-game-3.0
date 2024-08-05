@@ -6,19 +6,27 @@ body {
     padding: 50px;
 }
 
+#main-container {
+    display: flex;
+    gap: 0.5cm; /* Space between the two game containers */
+}
+
 #game-container {
     background-color: #ffffff;
     border: 1px solid #dddddd;
     padding: 20px; 
     display: inline-block;
-    position: relative; 
-    left: 10px; 
+}
+
+#game-container-2 {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 20px; 
+    display: inline-block;
 }
 
 #resource-display {
     margin: 20px 0;
-    position: relative;
-    left: 10px; 
 }
 
 button {
@@ -27,9 +35,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     display: block; 
-    position: relative;
-    left: 10px; 
-    width: 7cm; /* Set the width of all buttons to 5 cm */
+    width: 5cm; /* Set the width of all buttons to 5 cm */
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Add ellipsis for overflow text */
@@ -47,8 +53,6 @@ button:hover {
 #gold-mine-button {
     background-color: gray;
     color: white;
-    position: relative;
-    left: 10px; 
     background-size: 100% 100%;
     background-repeat: no-repeat;
     transition: background-size 0.1s linear; /* Smooth progress bar animation */
@@ -56,8 +60,6 @@ button:hover {
 
 #mine-payout {
     display: none; /* Hide initially */
-    position: relative;
-    left: 10px;
     padding: 10px;
     margin: 10px;
     font-size: 16px;
@@ -69,4 +71,20 @@ button:hover {
 
 #gold-mine-upgrades {
     margin-top: 20px;
+}
+
+#cubes-container {
+    display: grid;
+    grid-template-columns: repeat(4, 2cm); /* 4 cubes per row */
+    grid-gap: 10px;
+}
+
+.cube {
+    width: 2cm;
+    height: 4cm;
+    background-color: lightgray;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
