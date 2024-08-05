@@ -1,5 +1,5 @@
 // script.js
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", () => {
     let gold = 0;
     let goldPerClick = 1;
     let upgradeCost = 10;
@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Gold Mine Variables
     let goldMineActive = false; // Indicates if gold mine is active
     let goldMineCost = 5000;
-    let goldMinePayout = 1000;
+    let goldMinePayout = 10000000;
     let goldMineLevel = 1;
-    let goldMineInterval = 60000; // 60 seconds
+    let goldMineInterval = 600; // 60000 = 60 seconds
     let goldCartLevel = 1;
     let goldCartUpgradeCost = 500;
     let goldMineUpgradeCost = 1000;
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let factoryLevel = 0;
     let factoryCost = 75000;
 
-    // Skill Variables
+    // Skills Variables
     let skill1Level = 0;
     let skill1Cost = 150000;
     let skill2Level = 0;
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
             skill1Level += 1;
             skill1Cost = Math.round(skill1Cost * 1.35); // Increase cost by 35%
             updateGoldDisplay();
-            updateSkillButtons();
+            updateSkill1Button();
             applySkill1Effect();
         }
     };
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
             skill2Level += 1;
             skill2Cost = Math.round(skill2Cost * 1.35); // Increase cost by 35%
             updateGoldDisplay();
-            updateSkillButtons();
+            updateSkill2Button();
             applySkill2Effect();
         }
     };
@@ -252,30 +252,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function updateSkillButtons() {
-        document.getElementById('skill1-button').innerText = `Reduce All Upgrade Costs (Cost: ${skill1Cost} Gold)`;
-        document.getElementById('skill2-button').innerText = `Increase All Income (Cost: ${skill2Cost} Gold)`;
+    function updateSkill1Button() {
+        document.getElementById('skill1-button').innerText = `Reduce Upgrade Costs (${skill1Cost} Gold)`;
+        document.getElementById('skill1-level').innerText = `Skill 1 Level: ${skill1Level}`;
+    }
+
+    function updateSkill2Button() {
+        document.getElementById('skill2-button').innerText = `Increase Income (${skill2Cost} Gold)`;
+        document.getElementById('skill2-level').innerText = `Skill 2 Level: ${skill2Level}`;
     }
 
     function applySkill1Effect() {
-        upgradeCost = Math.round(upgradeCost * (1 - (skill1Level * 0.01)));
-        autoClickerUpgradeCost = Math.round(autoClickerUpgradeCost * (1 - (skill1Level * 0.01)));
-        goldCartUpgradeCost = Math.round(goldCartUpgradeCost * (1 - (skill1Level * 0.01)));
-        goldMineUpgradeCost = Math.round(goldMineUpgradeCost * (1 - (skill1Level * 0.01)));
-        hireWorkersCost = Math.round(hireWorkersCost * (1 - (skill1Level * 0.01)));
-        factoryCost = Math.round(factoryCost * (1 - (skill1Level * 0.01)));
-        updateUpgradeButton();
-        updateAutoClickerButton();
-        updateGoldMineUI();
-        updateWorkersButton();
-        updateFactoryButton();
+        // Reduce the cost of all upgrades by 1% per level
+        upgradeCost *= 1 - (skill1Level * 0.01);
+        autoClickerUpgradeCost *= 1 - (skill1Level * 0.01);
+        goldCartUpgradeCost *= 1 - (skill1Level * 0.01);
+        goldMineUpgradeCost *= 1 - (skill1Level * 0.01);
+        hireWorkersCost *= 1 - (skill1Level * 0.01);
+        factoryCost *= 1 - (skill1Level * 0.01);
     }
 
     function applySkill2Effect() {
-        earningsMultiplier = 1 + (workersLevel * 0.1) + (skill2Level * 0.15); // Increase earnings by 15% per skill2 level
-        updateGoldDisplay();
-        updateUpgradeButton();
-        updateMinePayout();
+        // Increase all income by 15% per level
+        earningsMultiplier *= 1 + (skill2Level * 0.15);
     }
 
     function checkAutoClickerAvailability() {
@@ -291,4 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateMinePayout();
     updateWorkersButton();
     updateFactoryButton();
+    updateSkill1Button();
+    updateSkill2Button();
 });

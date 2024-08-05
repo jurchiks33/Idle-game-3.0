@@ -8,7 +8,7 @@
 6. need to move price per upgrade outside button so it doesnt get extra long a fix button size
 7. need to display max and current upgrade level.
 8. make countdown for a timed skills.
-
+9.  Need to finish debugging factory upgrade buttons
 
 
 ----------------ROAD MAP-------------
