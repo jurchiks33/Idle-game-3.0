@@ -4,14 +4,14 @@ let goldPerClick = 1;
 let upgradeCost = 10;
 let upgradeLevel = 1; 
 let autoClickerInterval = null;
-let autoClickerSpeed = 10; // Set to 1000 for a real scenario
+let autoClickerSpeed = 1000;
 let autoClickerUpgradeCost = 25;
 let autoClickerLevel = 1;
 
 // Gold Mine Variables
-let goldMineActive = false; // Indicates if gold mine is active
+let goldMineActive = false;
 let goldMineCost = 5000;
-let goldMinePayout = 10000;
+let goldMinePayout = 1000;
 let goldMineLevel = 1;
 let goldMineInterval = 60000; // 60 seconds
 let goldCartLevel = 1;
@@ -27,6 +27,12 @@ let earningsMultiplier = 1; // Start with no multiplier
 // Factory Variables
 let factoryLevel = 0;
 let factoryCost = 75000;
+
+// Skills Variables
+let skill1Level = 0;
+let skill1Cost = 150000;
+let skill2Level = 0;
+let skill2Cost = 175000;
 
 // Initialize the UI
 document.getElementById('gold-mine-button').innerText = `Open Gold Mine (${goldMineCost} Gold)`; // Initial state text
@@ -51,7 +57,7 @@ document.getElementById('upgrade-click').onclick = () => {
         gold -= upgradeCost;
         goldPerClick += 1;
         upgradeLevel += 1;
-        upgradeCost = Math.round(upgradeCost * 1.5); 
+        upgradeCost = Math.round(upgradeCost * 1.5 / (1 + skill1Level * 0.01)); // Apply skill 1 discount
         updateGoldDisplay();
         updateUpgradeButton();
         checkAutoClickerAvailability(); 
@@ -63,7 +69,7 @@ document.getElementById('auto-upgrade-click').onclick = () => {
         gold -= autoClickerUpgradeCost;
         autoClickerLevel += 1;
         autoClickerSpeed = Math.max(autoClickerSpeed - 1, 1);
-        autoClickerUpgradeCost = Math.round(autoClickerUpgradeCost * 1.8); 
+        autoClickerUpgradeCost = Math.round(autoClickerUpgradeCost * 1.8 / (1 + skill1Level * 0.01)); // Apply skill 1 discount
         updateGoldDisplay();
         updateAutoClickerButton();
         if (autoClickerInterval) {
@@ -95,7 +101,7 @@ document.getElementById('upgrade-carts-button').onclick = () => {
         gold -= goldCartUpgradeCost;
         goldCartLevel += 1;
         goldMineInterval = Math.max(goldMineInterval - 10, 1000); // Decrease interval, min 1 sec
-        goldCartUpgradeCost = Math.round(goldCartUpgradeCost * 1.2); // Increase cost by 20%
+        goldCartUpgradeCost = Math.round(goldCartUpgradeCost * 1.2 / (1 + skill1Level * 0.01)); // Apply skill 1 discount
         updateGoldDisplay();
         updateGoldMineUI();
     }
@@ -106,7 +112,7 @@ document.getElementById('upgrade-mine-button').onclick = () => {
         gold -= goldMineUpgradeCost;
         goldMineLevel += 1;
         goldMinePayout = Math.round(goldMinePayout * 1.0075); // Increase payout by 0.75%
-        goldMineUpgradeCost = Math.round(goldMineUpgradeCost * 1.5); // Increase cost by 50%
+        goldMineUpgradeCost = Math.round(goldMineUpgradeCost * 1.5 / (1 + skill1Level * 0.01)); // Apply skill 1 discount
         updateGoldDisplay();
         updateGoldMineUI();
         updateMinePayout(); // Update payout amount immediately
@@ -118,7 +124,7 @@ document.getElementById('hire-workers-button').onclick = () => {
         gold -= hireWorkersCost;
         workersLevel += 1;
         earningsMultiplier = 1 + (workersLevel * 0.1); // Increase earnings by 10% per worker level
-        hireWorkersCost = Math.round(hireWorkersCost * 2.3); // Increase cost by 2.3 times
+        hireWorkersCost = Math.round(hireWorkersCost * 2.3 / (1 + skill1Level * 0.01)); // Apply skill 1 discount
         updateGoldDisplay();
         updateWorkersButton();
         updateGoldMineUI(); // Update mine UI to reflect new earnings
@@ -135,6 +141,37 @@ document.getElementById('factory-button').onclick = () => {
         updateGoldDisplay();
         updateFactoryButton();
         updateGameContainer2();
+    }
+};
+
+// Skill 1: Reduce all upgrade costs
+document.getElementById('skill-1-button').onclick = () => {
+    if (gold >= skill1Cost) {
+        gold -= skill1Cost;
+        skill1Level += 1;
+        skill1Cost = Math.round(skill1Cost * 1.35); // Increase cost by 35%
+        updateGoldDisplay();
+        updateSkill1Button();
+        updateUpgradeButton();
+        updateAutoClickerButton();
+        updateGoldMineUI();
+        updateWorkersButton();
+    }
+};
+
+// Skill 2: Increase all income
+document.getElementById('skill-2-button').onclick = () => {
+    if (gold >= skill2Cost) {
+        gold -= skill2Cost;
+        skill2Level += 1;
+        earningsMultiplier = 1 + (workersLevel * 0.1) + (skill2Level * 0.15); // Increase earnings by 15% per skill 2 level
+        skill2Cost = Math.round(skill2Cost * 1.35); // Increase cost by 35%
+        updateGoldDisplay();
+        updateSkill2Button();
+        updateUpgradeButton();
+        updateGoldMineUI();
+        updateWorkersButton();
+        updateMinePayout();
     }
 };
 
@@ -219,8 +256,26 @@ function updateGameContainer2() {
         cube.className = 'cube';
         cube.id = `cube-${i}`;
         cube.style.display = i <= factoryLevel * 2 ? 'block' : 'none'; // Show cubes based on factory level
+        const cubeLevel = document.createElement('div');
+        cubeLevel.id = `cube-${i}-level`;
+        cubeLevel.innerText = `Level: ${i <= 2 ? skill1Level : skill2Level}`; // Display correct skill level
+        const cubeButton = document.createElement('button');
+        cubeButton.id = `skill-${i <= 2 ? 1 : 2}-button`;
+        cubeButton.innerText = i <= 2 ? `Reduce Upgrade Costs (${skill1Cost} Gold)` : `Increase Income (${skill2Cost} Gold)`;
+        cube.appendChild(cubeLevel);
+        cube.appendChild(cubeButton);
         cubesContainer.appendChild(cube);
     }
+}
+
+function updateSkill1Button() {
+    document.getElementById('skill-1-button').innerText = `Reduce Upgrade Costs (${skill1Cost} Gold)`;
+    document.getElementById('cube-1-level').innerText = `Level: ${skill1Level}`;
+}
+
+function updateSkill2Button() {
+    document.getElementById('skill-2-button').innerText = `Increase Income (${skill2Cost} Gold)`;
+    document.getElementById('cube-2-level').innerText = `Level: ${skill2Level}`;
 }
 
 function checkAutoClickerAvailability() {
