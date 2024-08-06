@@ -4,21 +4,21 @@
 <head>
     <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idle Game 3.0</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="main-container">
         <div id="game-container">
-            <button id="auto-click-button" style="display:none;">Start Auto-Clicker</button> <!-- Auto-Clicker button moved here -->
+            <button id="auto-click-button" style="display:none;">Start Auto-Clicker</button>
             <h1>Idle Game</h1>
             <div id="resource-display">Gold: <span id="gold-amount">0</span></div>
             <button id="collect-button">Collect Gold</button>
             <button id="gold-mine-button">Open Gold Mine (5000 Gold)</button>
             <div id="mine-payout" style="display: none;">Payout: 1000 Gold</div>
-            <div id="workers-level" style="display: none;">Workers Level: 0</div> <!-- Workers level display -->
-            <button id="hire-workers-button" style="display: none;">Hire Workers (25000 Gold)</button> <!-- Hire Workers button -->
-            <div id="factory-level" style="display: none;">Factory Level: 0</div> <!-- Factory level display -->
-            <button id="factory-button" style="display: none;">Build Factory (75000 Gold)</button> <!-- Factory button -->
+            <div id="workers-level" style="display: none;">Workers Level: 0</div>
+            <button id="hire-workers-button" style="display: none;">Hire Workers (25000 Gold)</button>
+            <div id="factory-level" style="display: none;">Factory Level: 0</div>
+            <button id="factory-button" style="display: none;">Build Factory (75000 Gold)</button>
 
             <div id="upgrades">
                 <h2>Upgrades</h2>
@@ -35,13 +35,11 @@
                 </div>
             </div>
         </div>
-        <div id="game-container-2" style="display:none;"> <!-- Initially hidden -->
+        <div id="game-container-2" style="display:none;">
             <h1>Game Container 2</h1>
-            <div id="cubes-container">
-                <!-- Cubes will be dynamically generated here -->
-            </div>
+            <div id="cubes-container"></div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
