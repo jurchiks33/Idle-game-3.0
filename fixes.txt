@@ -11,6 +11,10 @@
 9.  Need to finish debugging factory upgrade buttons
 
 
+Refactor code, make it modular and split it in a smaller files,
+to make code easier to work, and make less room for errors.
+Backup copy of old file is created in backup folder.
+
 ----------------ROAD MAP-------------
 ---====READY====--- Collect Gold:
 
