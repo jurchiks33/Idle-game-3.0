@@ -1,7 +1,7 @@
 // script.js
 document.addEventListener("DOMContentLoaded", () => {
     let gold = 0;
-    let goldPerClick = 1;
+    let goldPerClick = 1000000000;
     let upgradeCost = 10;
     let upgradeLevel = 1; 
     let autoClickerInterval = null;
@@ -34,6 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let skill1Cost = 150000;
     let skill2Level = 0;
     let skill2Cost = 175000;
+
+    // Generate 20 cubes dynamically
+    const cubesContainer = document.getElementById('cubes-container');
+    if (cubesContainer) {
+        for (let i = 1; i <= 20; i++) {
+            const cube = document.createElement('div');
+            cube.className = 'cube';
+            cube.id = `cube-${i}`;
+            cube.innerHTML = `
+                <div id="skill${i}-level" style="display:none;">Skill ${i} Level: 0</div>
+                <button id="skill${i}-button" style="display:none;">Skill ${i} (Cost: 0 Gold)</button>
+            `;
+            cubesContainer.appendChild(cube);
+        }
+    }
 
     // Initialize the UI
     document.getElementById('gold-mine-button').innerText = `Open Gold Mine (${goldMineCost} Gold)`; // Initial state text
@@ -145,27 +160,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    document.getElementById('skill1-button').onclick = () => {
-        if (gold >= skill1Cost) {
-            gold -= skill1Cost;
-            skill1Level += 1;
-            skill1Cost = Math.round(skill1Cost * 1.35); // Increase cost by 35%
-            updateGoldDisplay();
-            updateSkill1Button();
-            applySkill1Effect();
+    for (let i = 1; i <= 20; i++) {
+        const skillButton = document.getElementById(`skill${i}-button`);
+        if (skillButton) {
+            skillButton.onclick = () => {
+                if (gold >= skill1Cost) {
+                    gold -= skill1Cost;
+                    skill1Level += 1;
+                    skill1Cost = Math.round(skill1Cost * 1.35); // Increase cost by 35%
+                    updateGoldDisplay();
+                    updateSkillButton(i); // Update the specific skill button
+                    applySkillEffect(i); // Apply the effect of the specific skill
+                }
+            };
         }
-    };
-
-    document.getElementById('skill2-button').onclick = () => {
-        if (gold >= skill2Cost) {
-            gold -= skill2Cost;
-            skill2Level += 1;
-            skill2Cost = Math.round(skill2Cost * 1.35); // Increase cost by 35%
-            updateGoldDisplay();
-            updateSkill2Button();
-            applySkill2Effect();
-        }
-    };
+    }
 
     // Functions
     function activateGoldMine() {
@@ -252,29 +261,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function updateSkill1Button() {
-        document.getElementById('skill1-button').innerText = `Reduce Upgrade Costs (${skill1Cost} Gold)`;
-        document.getElementById('skill1-level').innerText = `Skill 1 Level: ${skill1Level}`;
+    function updateSkillButton(skillIndex) {
+        document.getElementById(`skill${skillIndex}-button`).innerText = `Skill ${skillIndex} (Cost: ${skill1Cost} Gold)`;
+        document.getElementById(`skill${skillIndex}-level`).innerText = `Skill ${skillIndex} Level: ${skill1Level}`;
     }
 
-    function updateSkill2Button() {
-        document.getElementById('skill2-button').innerText = `Increase Income (${skill2Cost} Gold)`;
-        document.getElementById('skill2-level').innerText = `Skill 2 Level: ${skill2Level}`;
-    }
-
-    function applySkill1Effect() {
-        // Reduce the cost of all upgrades by 1% per level
-        upgradeCost *= 1 - (skill1Level * 0.01);
-        autoClickerUpgradeCost *= 1 - (skill1Level * 0.01);
-        goldCartUpgradeCost *= 1 - (skill1Level * 0.01);
-        goldMineUpgradeCost *= 1 - (skill1Level * 0.01);
-        hireWorkersCost *= 1 - (skill1Level * 0.01);
-        factoryCost *= 1 - (skill1Level * 0.01);
-    }
-
-    function applySkill2Effect() {
-        // Increase all income by 15% per level
-        earningsMultiplier *= 1 + (skill2Level * 0.15);
+    function applySkillEffect(skillIndex) {
+        // Implement the specific effect of the skill based on the skillIndex
+        if (skillIndex === 1) {
+            // Example: Reduce the cost of all upgrades by 1% per level
+            upgradeCost *= 1 - (skill1Level * 0.01);
+            autoClickerUpgradeCost *= 1 - (skill1Level * 0.01);
+            goldCartUpgradeCost *= 1 - (skill1Level * 0.01);
+            goldMineUpgradeCost *= 1 - (skill1Level * 0.01);
+            hireWorkersCost *= 1 - (skill1Level * 0.01);
+            factoryCost *= 1 - (skill1Level * 0.01);
+        } else if (skillIndex === 2) {
+            // Example: Increase all income by 15% per level
+            earningsMultiplier *= 1 + (skill2Level * 0.15);
+        }
+        // Add more skill effects as needed
     }
 
     function checkAutoClickerAvailability() {
@@ -290,6 +296,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateMinePayout();
     updateWorkersButton();
     updateFactoryButton();
-    updateSkill1Button();
-    updateSkill2Button();
+    updateSkillButton(1);
+    updateSkillButton(2);
 });
