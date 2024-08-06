@@ -52,3 +52,21 @@ export function updateMinePayout(goldMinePayout, earningsMultiplier) {
 export function updateWorkersButton(hireWorkersCost, workersLevel) {
     document.getElementById('hire-workers-button').innerText = `Hire Workers (${hireWorkersCost} Gold)`;
 }
+
+export function updateFactoryButton(factoryCost, factoryLevel) {
+    document.getElementById('factory-level').innerText = `Factory Level: ${factoryLevel}`;
+    document.getElementById('factory-button').innerText = `Build Factory (${factoryCost} Gold)`;
+}
+
+export function updateSkillButton(skillIndex, skillCost, skillLevel) {
+    document.getElementById(`skill${skillIndex}-button`).innerText = `Skill ${skillIndex} (Cost: ${skillCost} Gold)`;
+    document.getElementById(`skill${skillIndex}-level`).innerText = `Skill ${skillIndex} Level: ${skillLevel}`;
+}
+
+export function showAutoClickerButton() {
+    document.getElementById('auto-click-button').style.display = 'block';
+}
+
+export function showGameContainer2() {
+    document.getElementById('game-container-2').style.display = 'block';
+}
