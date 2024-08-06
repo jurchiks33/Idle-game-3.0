@@ -20,3 +20,35 @@ export function initializeUI() {
     }
 }
 
+
+export function updateGoldDisplay(gold) {
+    document.getElementById('gold-amount').innerText = `Gold: ${gold.toFixed(2)}`;
+}
+
+export function updateUpgradeButton(upgradeCost, upgradeLevel, goldPerClick, earningsMultiplier) {
+    document.getElementById('upgrade-click').innerText = `Upgrade Click (${upgradeCost} Gold) - Current: ${Math.round(goldPerClick * earningsMultiplier)} per click`;
+    document.getElementById('upgrade-level').innerText = `Level: ${upgradeLevel}`;
+}
+
+export function updateAutoClickerButton(autoClickerUpgradeCost, autoClickerLevel) {
+    document.getElementById('auto-upgrade-click').innerText = `Upgrade Auto-Clicker (${autoClickerUpgradeCost} Gold)`;
+    document.getElementById('auto-upgrade-level').innerText = `Auto-Clicker Level: ${autoClickerLevel}`;
+}
+
+export function updateGoldMineUI(goldMineCost, goldMineLevel, goldCartLevel, goldCartUpgradeCost, goldMineUpgradeCost, workersLevel, hireWorkersCost) {
+    document.getElementById('gold-mine-button').innerText = `Open Gold Mine (${goldMineCost} Gold)`;
+    document.getElementById('mine-level').innerText = `Mine Level: ${goldMineLevel}`;
+    document.getElementById('cart-level').innerText = `Cart Level: ${goldCartLevel}`;
+    document.getElementById('upgrade-carts-button').innerText = `Upgrade Gold Carts (Cost: ${goldCartUpgradeCost} Gold)`;
+    document.getElementById('upgrade-mine-button').innerText = `Upgrade Gold Mine (Cost: ${goldMineUpgradeCost} Gold)`;
+    document.getElementById('workers-level').innerText = `Workers Level: ${workersLevel}`;
+    document.getElementById('hire-workers-button').innerText = `Hire Workers (${hireWorkersCost} Gold)`;
+}
+
+export function updateMinePayout(goldMinePayout, earningsMultiplier) {
+    document.getElementById('mine-payout').innerText = `Payout: ${Math.round(goldMinePayout * earningsMultiplier)} Gold`;
+}
+
+export function updateWorkersButton(hireWorkersCost, workersLevel) {
+    document.getElementById('hire-workers-button').innerText = `Hire Workers (${hireWorkersCost} Gold)`;
+}
