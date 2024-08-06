@@ -38,11 +38,7 @@
         <div id="game-container-2" style="display:none;"> <!-- Initially hidden -->
             <h1>Game Container 2</h1>
             <div id="cubes-container">
-                <!-- Generate 20 cubes -->
-                ${Array.from({length: 20}, (_, i) => `<div class="cube" id="cube-${i + 1}">
-                    <div id="skill${i + 1}-level" style="display:none;">Skill ${i + 1} Level: 0</div>
-                    <button id="skill${i + 1}-button" style="display:none;">Skill ${i + 1} (Cost: 0 Gold)</button>
-                </div>`).join('')}
+                <!-- Cubes will be dynamically generated here -->
             </div>
         </div>
     </div>
