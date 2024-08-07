@@ -1,4 +1,4 @@
-//ui.js
+// ui.js
 
 export function initializeUI() {
     updateGoldDisplay(0);
