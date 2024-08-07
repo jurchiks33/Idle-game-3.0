@@ -1,3 +1,5 @@
+//ui.js
+
 export function initializeUI() {
     updateGoldDisplay(0);
     updateUpgradeButton(10, 1, 1000000000, 1);
@@ -19,7 +21,6 @@ export function initializeUI() {
         cubesContainer.appendChild(cube);
     }
 }
-
 
 export function updateGoldDisplay(gold) {
     document.getElementById('gold-amount').innerText = `Gold: ${gold.toFixed(2)}`;
