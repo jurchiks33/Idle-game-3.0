@@ -1,95 +1,122 @@
+// game.js
 import { updateGoldDisplay, updateUpgradeButton, updateAutoClickerButton, updateGoldMineUI, updateMinePayout, updateWorkersButton, updateFactoryButton, updateSkillButton, showAutoClickerButton, showGameContainer2 } from './ui.js';
 
-let gold = 0;
-let goldPerClick = 1000000000;
-let upgradeCost = 10;
-let upgradeLevel = 1;
-let autoClickerInterval = null;
-let autoClickerSpeed = 10;
-let autoClickerUpgradeCost = 25;
-let autoClickerLevel = 1;
+export let gold = 0;
+export let goldPerClick = 1;
+export let upgradeCost = 10;
+export let upgradeLevel = 1;
+export let autoClickerInterval = null;
+export let autoClickerSpeed = 1000; 
+export let autoClickerUpgradeCost = 25;
+export let autoClickerLevel = 1;
+export let goldMineActive = false;
+export let goldMineCost = 5000;
+export let goldMinePayout = 1000;
+export let goldMineLevel = 1;
+export let goldMineInterval = 60000;
+export let goldCartLevel = 1;
+export let goldCartUpgradeCost = 500;
+export let goldMineUpgradeCost = 1000;
+export let mineTimer = null;
+export let workersLevel = 0;
+export let hireWorkersCost = 25000;
+export let earningsMultiplier = 1;
+export let factoryLevel = 0;
+export let factoryCost = 75000;
+export let skillLevel = Array(20).fill(0);
+export let skillCost = Array(20).fill(100);
 
-let goldMineActive = false;
-let goldMineCost = 5000;
-let goldMinePayout = 10000000;
-let goldMineLevel = 1;
-let goldMineInterval = 600;
-let goldCartLevel = 1;
-let goldCartUpgradeCost = 500;
-let goldMineUpgradeCost = 1000;
-let mineTimer;
-
-let workersLevel = 0;
-let hireWorkersCost = 25000;
-let earningsMultiplier = 1;
-
-let factoryLevel = 0;
-let factoryCost = 75000;
-
-let skill1Level = 0;
-let skill1Cost = 150000;
-let skill2Level = 0;
-let skill2Cost = 175000;
-
-export function initializeGame() {
-    updateGoldDisplay(gold);
-    updateUpgradeButton(upgradeCost, upgradeLevel, goldPerClick, earningsMultiplier);
-    updateAutoClickerButton(autoClickerUpgradeCost, autoClickerLevel);
-    updateGoldMineUI(goldMineCost, goldMineLevel, goldCartLevel, goldCartUpgradeCost, goldMineUpgradeCost, workersLevel, hireWorkersCost);
+export function activateGoldMine() {
+    goldMineActive = true;
+    document.getElementById('gold-mine-button').style.display = 'none';
+    document.getElementById('mine-payout').style.display = 'block';
+    document.getElementById('workers-level').style.display = 'block';
+    document.getElementById('hire-workers-button').style.display = 'block';
+    document.getElementById('factory-level').style.display = 'block';
+    document.getElementById('factory-button').style.display = 'block';
+    document.getElementById('gold-mine-upgrades').style.display = 'block';
     updateMinePayout(goldMinePayout, earningsMultiplier);
-    updateWorkersButton(hireWorkersCost, workersLevel);
-    updateFactoryButton(factoryCost, factoryLevel);
-    updateSkillButton(1, skill1Cost, skill1Level);
-    updateSkillButton(2, skill2Cost, skill2Level);
+    mineTimer = setInterval(() => {
+        gold += goldMinePayout * earningsMultiplier;
+        updateGoldDisplay(gold);
+    }, goldMineInterval);
+    startMineTimer();
+    updateGoldMineUI(goldMineCost, goldMineLevel, goldCartLevel, goldCartUpgradeCost, goldMineUpgradeCost, workersLevel, hireWorkersCost);
 }
 
-export function collectGold() {
-    gold += goldPerClick * earningsMultiplier;
-    updateGoldDisplay(gold);
+export function hireWorkers() {
+    gold -= hireWorkersCost;
+    workersLevel += 1;
+    earningsMultiplier = 1 + (workersLevel * 0.1);
+    hireWorkersCost = Math.round(hireWorkersCost * 2.3);
+}
+
+export function buildFactory() {
+    gold -= factoryCost;
+    factoryLevel += 1;
+    factoryCost = Math.round(factoryCost * 1.35);
 }
 
 export function upgradeClick() {
-    if (gold >= upgradeCost) {
-        gold -= upgradeCost;
-        goldPerClick += 1;
-        upgradeLevel += 1;
-        upgradeCost = Math.round(upgradeCost * 1.5);
-        updateGoldDisplay(gold);
-        updateUpgradeButton(upgradeCost, upgradeLevel, goldPerClick, earningsMultiplier);
-        if (upgradeLevel >= 10) {
-            showAutoClickerButton();
-        }
-    }
+    gold -= upgradeCost;
+    goldPerClick += 1;
+    upgradeLevel += 1;
+    upgradeCost = Math.round(upgradeCost * 1.5);
 }
 
 export function upgradeAutoClicker() {
-    if (gold >= autoClickerUpgradeCost) {
-        gold -= autoClickerUpgradeCost;
-        autoClickerLevel += 1;
-        autoClickerSpeed = Math.max(autoClickerSpeed - 1, 1);
-        autoClickerUpgradeCost = Math.round(autoClickerUpgradeCost * 1.8);
-        updateGoldDisplay(gold);
-        updateAutoClickerButton(autoClickerUpgradeCost, autoClickerLevel);
-        if (autoClickerInterval) {
-            clearInterval(autoClickerInterval);
-            autoClickerInterval = setInterval(() => {
-                collectGold();
-            }, autoClickerSpeed);
-        }
-    }
+    gold -= autoClickerUpgradeCost;
+    autoClickerLevel += 1;
+    autoClickerSpeed = Math.max(autoClickerSpeed - 1, 1);
+    autoClickerUpgradeCost = Math.round(autoClickerUpgradeCost * 1.8);
 }
 
-export function toggleAutoClicker() {
+export function startAutoClicker() {
     if (autoClickerInterval) {
         clearInterval(autoClickerInterval);
         autoClickerInterval = null;
         document.getElementById('auto-click-button').innerText = 'Start Auto-Clicker';
     } else {
         autoClickerInterval = setInterval(() => {
-            collectGold();
+            gold += goldPerClick * earningsMultiplier;
+            updateGoldDisplay(gold);
         }, autoClickerSpeed);
         document.getElementById('auto-click-button').innerText = 'Stop Auto-Clicker';
     }
 }
 
-// Add other game logic functions here (e.g., activateGoldMine, hireWorkers, buildFactory, upgradeSkills, etc.)
+export function upgradeCarts() {
+    gold -= goldCartUpgradeCost;
+    goldCartLevel += 1;
+    goldMineInterval = Math.max(goldMineInterval - 1000, 1000);
+    goldCartUpgradeCost = Math.round(goldCartUpgradeCost * 1.2);
+}
+
+export function upgradeMine() {
+    gold -= goldMineUpgradeCost;
+    goldMineLevel += 1;
+    goldMinePayout = Math.round(goldMinePayout * 1.0075);
+    goldMineUpgradeCost = Math.round(goldMineUpgradeCost * 1.5);
+}
+
+export function upgradeSkill(skillIndex) {
+    if (gold >= skillCost[skillIndex]) {
+        gold -= skillCost[skillIndex];
+        skillLevel[skillIndex] += 1;
+        skillCost[skillIndex] = Math.round(skillCost[skillIndex] * 1.35);
+    }
+}
+
+export function startMineTimer() {
+    let countdown = 0;
+    const countdownInterval = setInterval(() => {
+        countdown += 100;
+        let progress = Math.min(countdown / goldMineInterval, 1);
+        document.getElementById('mine-payout').style.backgroundImage = 
+            `linear-gradient(to right, green ${progress * 100}%, gray ${progress * 100}%)`;
+        if (progress === 1) {
+            clearInterval(countdownInterval);
+            startMineTimer();
+        }
+    }, 100);
+}
