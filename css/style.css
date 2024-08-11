@@ -87,4 +87,10 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }
