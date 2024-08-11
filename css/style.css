@@ -111,5 +111,11 @@ button:hover {
     position: relative;
 }
 
-
-
+#cube-1 { background-image: url('../images/factory1.jpg');}
+#cube-2 { background-image: url('../images/factory1.jpg');}
+#cube-3 { background-image: url('../images/factory1.jpg');}
+#cube-4 { background-image: url('../images/factory1.jpg');}
+#cube-5 { background-image: url('../images/factory2.jpg');}
+#cube-6 { background-image: url('../images/factory2.jpg');}
+#cube-7 { background-image: url('../images/factory2.jpg');}
+#cube-8 { background-image: url('../images/factory2.jpg');}
