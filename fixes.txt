@@ -8,12 +8,15 @@
 6. need to move price per upgrade outside button so it doesnt get extra long a fix button size
 7. need to display max and current upgrade level.
 8. make countdown for a timed skills.
-9.  Need to finish debugging factory upgrade buttons
+9. ---====FIXED====---Need to finish debugging factory upgrade buttons
+10. factory images are displayed multiple times, after factory is upgraded and new images added,
+    old ones keep mowing down. need to make that no image is displayed and only after opening 
+    with upgrades, cube with image and possible upgrade in it is displayed.
 
 
-Refactor code, make it modular and split it in a smaller files,
-to make code easier to work, and make less room for errors.
-Backup copy of old file is created in backup folder.
+---====FIXED====---Refactor code, make it modular and split it in a smaller files,
+---====FIXED====---to make code easier to work, and make less room for errors.
+---====FIXED====---Backup copy of old file is created in backup folder.
 
 ----------------ROAD MAP-------------
 ---====READY====--- Collect Gold:
@@ -30,7 +33,7 @@ Backup copy of old file is created in backup folder.
 ---====READY====---Hire workers that collect gold over time. Workers can be upgraded to increase their efficiency.
 
 ---====READY====---Add factory building to the game, factory should open new game container on a screen with further upgrades
-Fix script for a factoy upgrades, where each upgrade is opening new boxes for a skills.
+---====READY====---Fix script for a factoy upgrades, where each upgrade is opening new boxes for a skills.
 work out skills.
 introduce in a final skill boxes infinite skills for upgrades, increasing payout and reducing upgrade costs.
 
