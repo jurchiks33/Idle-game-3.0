@@ -106,3 +106,10 @@ button:hover {
     z-index: 1;
 }
 
+.cube span {
+    z-index: 2;
+    position: relative;
+}
+
+
+
