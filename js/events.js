@@ -100,9 +100,11 @@ export function initializeEvents() {
             buildFactory();
             updateGoldDisplay(gold);
             updateFactoryButton(factoryCost, factoryLevel);
-            updateGameContainer2(factoryLevel); // Ensure this function is properly defined in ui.js
+            showGameContainer2(); // Ensure this function is properly called
+            updateGameContainer2(factoryLevel); // Ensure cubes are shown based on factory level
         }
     };
+    
 
     for (let i = 1; i <= 20; i++) {
         document.getElementById(`skill${i}-button`).onclick = () => {
