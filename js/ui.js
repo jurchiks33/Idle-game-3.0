@@ -10,6 +10,9 @@ export function initializeUI() {
     updateFactoryButton(75000, 0);
 
     const cubesContainer = document.getElementById('cubes-container');
+    cubesContainer.innerHTML = ''; // Clear the container
+
+    // Create 20 skill cubes but hide them initially
     for (let i = 1; i <= 20; i++) {
         const cube = document.createElement('div');
         cube.className = 'cube';
@@ -70,4 +73,18 @@ export function showAutoClickerButton() {
 
 export function showGameContainer2() {
     document.getElementById('game-container-2').style.display = 'block';
+}
+
+export function updateGameContainer2(factoryLevel) {
+    const cubesToShow = factoryLevel * 2; // Number of cubes to show based on factory level
+    for (let i = 1; i <= 20; i++) {
+        const cube = document.getElementById(`cube-${i}`);
+        if (i <= cubesToShow) {
+            cube.style.display = 'block';
+            document.getElementById(`skill${i}-level`).style.display = 'block';
+            document.getElementById(`skill${i}-button`).style.display = 'block';
+        } else {
+            cube.style.display = 'none';
+        }
+    }
 }
