@@ -125,6 +125,34 @@ button:hover {
     transition: background-color 0.3s;
 }
 
+.cube button:hover {
+    background-color: #555;
+}
+
+.cube button::after {
+    content: attr(data-cost); /* Use data-cost attribute for hover text */
+    display: block;
+    font-size: 0.9cm;
+    color: #fff;
+    background-color: #333;
+    padding: 0.2cm;
+    border-radius: 3px;
+    position: absolute;
+    bottom: 100%; /* Position it above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.cube button:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+
 #cube-1 { background-image: url('../images/factory1.jpg');}
 #cube-2 { background-image: url('../images/factory1.jpg');}
 #cube-3 { background-image: url('../images/factory1.jpg');}
