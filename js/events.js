@@ -1,40 +1,63 @@
 // events.js
-import { activateGoldMine, hireWorkers, buildFactory, upgradeClick, upgradeAutoClicker, upgradeCarts, upgradeMine, startAutoClicker } from './game.js';
-import { updateGoldDisplay, updateUpgradeButton, updateAutoClickerButton, updateGoldMineUI, updateMinePayout, updateWorkersButton, updateFactoryButton, updateSkillButton, showAutoClickerButton, showGameContainer2 } from './ui.js';
+import {
+    activateGoldMine,
+    hireWorkers,
+    buildFactory,
+    upgradeClick,
+    upgradeAutoClicker,
+    upgradeCarts,
+    upgradeMine,
+    startAutoClicker,
+    upgradeSkill // Added this import
+} from './game.js';
+
+import {
+    updateGoldDisplay,
+    updateUpgradeButton,
+    updateAutoClickerButton,
+    updateGoldMineUI,
+    updateMinePayout,
+    updateWorkersButton,
+    updateFactoryButton,
+    updateSkillButton,
+    showAutoClickerButton,
+    showGameContainer2,
+    updateGameContainer2 // Added this import
+} from './ui.js';
 
 export function initializeEvents() {
     document.getElementById('collect-button').onclick = () => {
         gold += goldPerClick * earningsMultiplier;
-        updateGoldDisplay();
+        updateGoldDisplay(gold);
     };
 
     document.getElementById('gold-mine-button').onclick = () => {
         if (!goldMineActive && gold >= goldMineCost) {
             gold -= goldMineCost;
             activateGoldMine();
-            updateGoldDisplay();
+            updateGoldDisplay(gold);
         }
     };
 
     document.getElementById('upgrade-click').onclick = () => {
         if (gold >= upgradeCost) {
             upgradeClick();
-            updateGoldDisplay();
+            updateGoldDisplay(gold);
             updateUpgradeButton(upgradeCost, upgradeLevel, goldPerClick, earningsMultiplier);
-            checkAutoClickerAvailability();
+            checkAutoClickerAvailability(); // Ensure this function is defined in your game.js
         }
     };
 
     document.getElementById('auto-upgrade-click').onclick = () => {
         if (gold >= autoClickerUpgradeCost) {
             upgradeAutoClicker();
-            updateGoldDisplay();
+            updateGoldDisplay(gold);
             updateAutoClickerButton(autoClickerUpgradeCost, autoClickerLevel);
             if (autoClickerInterval) {
                 clearInterval(autoClickerInterval);
                 autoClickerInterval = setInterval(() => {
                     gold += goldPerClick * earningsMultiplier;
-                    updateGoldDisplay();
+                    updateGoldDisplay(gold);
                 }, autoClickerSpeed);
             }
         }
@@ -47,7 +70,7 @@ export function initializeEvents() {
     document.getElementById('upgrade-carts-button').onclick = () => {
         if (gold >= goldCartUpgradeCost) {
             upgradeCarts();
-            updateGoldDisplay();
+            updateGoldDisplay(gold);
             updateGoldMineUI(goldMineCost, goldMineLevel, goldCartLevel, goldCartUpgradeCost, goldMineUpgradeCost, workersLevel, hireWorkersCost);
         }
     };
@@ -55,7 +78,7 @@ export function initializeEvents() {
     document.getElementById('upgrade-mine-button').onclick = () => {
         if (gold >= goldMineUpgradeCost) {
             upgradeMine();
-            updateGoldDisplay();
+            updateGoldDisplay(gold);
             updateGoldMineUI(goldMineCost, goldMineLevel, goldCartLevel, goldCartUpgradeCost, goldMineUpgradeCost, workersLevel, hireWorkersCost);
             updateMinePayout(goldMinePayout, earningsMultiplier);
         }
@@ -64,7 +87,7 @@ export function initializeEvents() {
     document.getElementById('hire-workers-button').onclick = () => {
         if (gold >= hireWorkersCost) {
             hireWorkers();
-            updateGoldDisplay();
+            updateGoldDisplay(gold);
             updateWorkersButton(hireWorkersCost, workersLevel);
             updateGoldMineUI(goldMineCost, goldMineLevel, goldCartLevel, goldCartUpgradeCost, goldMineUpgradeCost, workersLevel, hireWorkersCost);
             updateMinePayout(goldMinePayout, earningsMultiplier);
@@ -75,16 +98,16 @@ export function initializeEvents() {
     document.getElementById('factory-button').onclick = () => {
         if (gold >= factoryCost) {
             buildFactory();
-            updateGoldDisplay();
+            updateGoldDisplay(gold);
             updateFactoryButton(factoryCost, factoryLevel);
-            showGameContainer2();
+            updateGameContainer2(factoryLevel); // Ensure this function is properly defined in ui.js
         }
     };
 
     for (let i = 1; i <= 20; i++) {
         document.getElementById(`skill${i}-button`).onclick = () => {
             upgradeSkill(i);
-            updateGoldDisplay();
+            updateGoldDisplay(gold);
             updateSkillButton(i, skillCost[i], skillLevel[i]);
         };
     }
