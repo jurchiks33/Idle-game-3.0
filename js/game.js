@@ -154,9 +154,11 @@ export function initializeGame() {
             factoryCost = Math.round(factoryCost * 1.35); // Increase cost by 35%
             updateGoldDisplay(gold);
             updateFactoryButton(factoryCost, factoryLevel);
+            showGameContainer2(); // Ensure Game Container 2 is shown
             updateGameContainer2(factoryLevel); // Call updateGameContainer2 with factoryLevel
         }
     };
+    
 
     for (let i = 1; i <= 20; i++) {
         document.getElementById(`skill${i}-button`).onclick = () => {
