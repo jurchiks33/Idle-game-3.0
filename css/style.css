@@ -80,18 +80,16 @@ button:hover {
 }
 
 .cube {
-    width: 2cm;
-    height: 4cm;
-    background-color: lightgray;
-    border: 1px solid #000;
+    width: 6cm; /* Increase the width of the skill block */
+    height: 8cm; /* Increase the height of the skill block */
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    margin: 10px;
+    position: relative; /* To position the button correctly inside */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    color: white;
-    font-weight: bold;
     text-align: center;
 }
 
@@ -107,8 +105,24 @@ button:hover {
 }
 
 .cube span {
-    z-index: 2;
-    position: relative;
+    font-size: 1.2cm;
+    margin-bottom: 1cm;
+}
+
+.cube button {
+    padding: 0.5cm 1cm;
+    font-size: 1.2cm;
+    cursor: pointer;
+    background-color: #777;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 100%; /* Make the button take up the full width of the cube */
+    max-width: 90%; /* But not more than 90% of the cube width */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show ellipsis for overflow text */
+    transition: background-color 0.3s;
 }
 
 #cube-1 { background-image: url('../images/factory1.jpg');}
