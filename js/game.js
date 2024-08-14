@@ -11,7 +11,8 @@ import {
     updateFactoryButton,
     updateSkillButton,
     showAutoClickerButton,
-    showGameContainer2
+    showGameContainer2,
+    updateGameContainer2 // Added this import
 } from './ui.js';
 
 let gold = 0;
@@ -153,7 +154,7 @@ export function initializeGame() {
             factoryCost = Math.round(factoryCost * 1.35); // Increase cost by 35%
             updateGoldDisplay(gold);
             updateFactoryButton(factoryCost, factoryLevel);
-            updateGameContainer2();
+            updateGameContainer2(factoryLevel); // Call updateGameContainer2 with factoryLevel
         }
     };
 
@@ -202,22 +203,6 @@ export function initializeGame() {
         }, 100);
     }
 
-    function updateGameContainer2() {
-        const container2 = document.getElementById('game-container-2');
-        container2.style.display = 'block'; // Show the second game container
-
-        // Calculate the number of cubes to unlock
-        const cubesToUnlock = factoryLevel * 2;
-        for (let i = 1; i <= 20; i++) {
-            const cube = document.getElementById(`cube-${i}`);
-            if (i <= cubesToUnlock) {
-                cube.style.display = 'block';
-            } else {
-                cube.style.display = 'none';
-            }
-        }
-    }
-
     function applySkill1Effect() {
         // Reduce the cost of all upgrades by 1% per level
         upgradeCost *= 1 - (skill1Level * 0.01);
@@ -234,3 +219,4 @@ export function initializeGame() {
         }
     }
 }
+
