@@ -62,8 +62,11 @@ export function updateFactoryButton(factoryCost, factoryLevel) {
     document.getElementById('factory-button').innerText = `Build Factory (${factoryCost} Gold)`;
 }
 
+// Enhanced updateSkillButton function with hover text and "Upgrade" button text
 export function updateSkillButton(skillIndex, skillCost, skillLevel) {
-    document.getElementById(`skill${skillIndex}-button`).innerText = `Skill ${skillIndex} (Cost: ${skillCost} Gold)`;
+    const button = document.getElementById(`skill${skillIndex}-button`);
+    button.innerText = `Upgrade`; // Always show "Upgrade" as the button text
+    button.setAttribute('data-cost', `Cost: ${skillCost} Gold`); // Set the hover text
     document.getElementById(`skill${skillIndex}-level`).innerText = `Skill ${skillIndex} Level: ${skillLevel}`;
 }
 
