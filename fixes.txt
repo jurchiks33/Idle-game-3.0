@@ -15,6 +15,7 @@
 11. Factory button skills are not working properly, they are not clickabel
 12. asign fatory skills.
 13 adjust prices for factory skills.
+14. implement functions for factory upgrades.
 
 
 
