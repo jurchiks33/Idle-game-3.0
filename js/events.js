@@ -8,7 +8,7 @@ import {
     upgradeCarts,
     upgradeMine,
     startAutoClicker,
-    upgradeSkill // Added this import
+    applySkill1Effect
 } from './game.js';
 
 import {
@@ -22,7 +22,7 @@ import {
     updateSkillButton,
     showAutoClickerButton,
     showGameContainer2,
-    updateGameContainer2 // Added this import
+    updateGameContainer2
 } from './ui.js';
 
 export function initializeEvents() {
@@ -44,7 +44,7 @@ export function initializeEvents() {
             upgradeClick();
             updateGoldDisplay(gold);
             updateUpgradeButton(upgradeCost, upgradeLevel, goldPerClick, earningsMultiplier);
-            checkAutoClickerAvailability(); // Ensure this function is defined in your game.js
+            checkAutoClickerAvailability();
         }
     };
 
@@ -100,17 +100,14 @@ export function initializeEvents() {
             buildFactory();
             updateGoldDisplay(gold);
             updateFactoryButton(factoryCost, factoryLevel);
-            showGameContainer2(); // Ensure this function is properly called
-            updateGameContainer2(factoryLevel); // Ensure cubes are shown based on factory level
+            showGameContainer2();
+            updateGameContainer2(factoryLevel);
         }
     };
-    
 
     for (let i = 1; i <= 20; i++) {
         document.getElementById(`skill${i}-button`).onclick = () => {
-            upgradeSkill(i);
-            updateGoldDisplay(gold);
-            updateSkillButton(i, skillCost[i], skillLevel[i]);
+            upgradeSkill(i - 1);
         };
     }
 }
