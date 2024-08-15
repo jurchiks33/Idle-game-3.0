@@ -204,3 +204,39 @@ function activateGoldMine() {
     document.getElementById('factory-button').style.display = 'block';
     document.getElementById('gold-mine-upgrades').style.display = 'block';
     updateMinePayout(goldMinePayout, earningsMultiplier);
+    mineTimer = setInterval(() => {
+        gold += goldMinePayout * earningsMultiplier;
+        updateGoldDisplay(gold);
+    }, goldMineInterval);
+    startMineTimer();
+    updateGoldMineUI(goldMineCost, goldMineLevel, goldCartLevel, goldCartUpgradeCost, goldMineUpgradeCost, workersLevel, hireWorkersCost);
+}
+
+function startMineTimer() {
+    let countdown = 0;
+    const countdownInterval = setInterval(() => {
+        countdown += 100;
+        let progress = Math.min(countdown / goldMineInterval, 1);
+        document.getElementById('mine-payout').style.backgroundImage = 
+            `linear-gradient(to right, green ${progress * 100}%, gray ${progress * 100}%)`;
+        if (progress === 1) {
+            clearInterval(countdownInterval);
+            startMineTimer();
+        }
+    }, 100);
+}
+
+function checkAutoClickerAvailability() {
+    if (upgradeLevel >= 10) {
+        showAutoClickerButton();
+    }
+}
+
+export function applySkill1Effect() {
+    upgradeCost *= 1 - (skills[0].level * 0.01);
+    autoClickerUpgradeCost *= 1 - (skills[0].level * 0.01);
+    goldCartUpgradeCost *= 1 - (skills[0].level * 0.01);
+    goldMineUpgradeCost *= 1 - (skills[0].level * 0.01);
+    hireWorkersCost *= 1 - (skills[0].level * 0.01);
+    factoryCost *= 1 - (skills[0].level * 0.01);
+}
