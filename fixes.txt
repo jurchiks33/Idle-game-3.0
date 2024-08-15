@@ -13,6 +13,9 @@
     ---====FIXED====---old ones keep mowing down. need to make that no image is displayed and only after opening 
     ---====FIXED====---with upgrades, cube with image and possible upgrade in it is displayed.
 11. Factory button skills are not working properly, they are not clickabel
+12. asign fatory skills.
+13 adjust prices for factory skills.
+
 
 
 ---====FIXED====---Refactor code, make it modular and split it in a smaller files,
