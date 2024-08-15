@@ -35,7 +35,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     display: block; 
-    width: 8cm; /* Set the width of all buttons to 5 cm */
+    width: 8cm; /* Set the width of all buttons to 8 cm */
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Add ellipsis for overflow text */
@@ -75,28 +75,29 @@ button:hover {
 
 #cubes-container {
     display: grid;
-    grid-template-columns: repeat(4, 2cm); /* 4 cubes per row */
-    grid-gap: 10px;
+    grid-template-columns: repeat(4, 4.5cm); /* 4 cubes per row, each 4.5cm wide */
+    grid-gap: 0.5cm; /* Space between cubes */
 }
 
 .cube {
-    width: 6cm; /* Increase the width of the skill block */
-    height: 8cm; /* Increase the height of the skill block */
+    width: 4cm; /* Consistent width for all skill blocks */
+    height: 6cm; /* Consistent height for all skill blocks */
     background-color: #f0f0f0;
     border: 1px solid #ddd;
-    margin: 10px;
-    position: relative; /* To position the button correctly inside */
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Adjust to space content evenly */
     text-align: center;
+    padding: 0.5cm;
+    box-sizing: border-box;
 }
 
 .cube::before {
     content: "";
     position: absolute;
-    top: o;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
@@ -111,18 +112,19 @@ button:hover {
 
 .cube button {
     padding: 0.5cm 1cm;
-    font-size: 1.2cm;
+    font-size: 0.4cm;
     cursor: pointer;
     background-color: #777;
     color: white;
     border: none;
     border-radius: 5px;
-    width: 100%; /* Make the button take up the full width of the cube */
-    max-width: 90%; /* But not more than 90% of the cube width */
-    white-space: nowrap; /* Prevent text wrapping */
+    width: 100%; /* Ensure the button takes the full width */
+    max-width: 90%;
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Show ellipsis for overflow text */
+    text-overflow: ellipsis;
     transition: background-color 0.3s;
+    z-index: 2;
 }
 
 .cube button:hover {
@@ -151,7 +153,6 @@ button:hover {
     opacity: 1;
     visibility: visible;
 }
-
 
 #cube-1 { background-image: url('../images/factory1.jpg');}
 #cube-2 { background-image: url('../images/factory1.jpg');}
