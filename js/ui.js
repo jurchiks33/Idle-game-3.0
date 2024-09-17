@@ -59,7 +59,15 @@ export function updateWorkersButton(hireWorkersCost, workersLevel) {
 
 export function updateFactoryButton(factoryCost, factoryLevel) {
     document.getElementById('factory-level').innerText = `Factory Level: ${factoryLevel}`;
-    document.getElementById('factory-button').innerText = `Build Factory (${factoryCost} Gold)`;
+    const factoryButton = document.getElementById('factory-button');
+    
+    if (factoryLevel >= 20) {
+        factoryButton.innerText = 'Max Level Reached'; // Optional: Change the button text
+        factoryButton.disabled = true; // Disable the button to prevent further upgrades
+    } else {
+        factoryButton.innerText = `Build Factory (${factoryCost} Gold)`;
+        factoryButton.disabled = false;
+    }
 }
 
 // Enhanced updateSkillButton function with hover text and "Upgrade" button text
