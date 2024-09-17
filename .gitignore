@@ -1,0 +1,59 @@
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Dependency directories
+jspm_packages/
+.venv/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+*.swo
+*.orig
+*.lock
+
+# IDE/editor specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Git specific files
+*.git/
+*.gitconfig
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Miscellaneous
+coverage/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Output files
+*.out
+
+# Other files
+# Add any other file or directory patterns here that you want Git to ignore
