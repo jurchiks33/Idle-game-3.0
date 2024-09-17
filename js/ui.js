@@ -87,11 +87,14 @@ export function showGameContainer2() {
 }
 
 export function updateGameContainer2(factoryLevel) {
-    const cubesToShow = factoryLevel * 2; // Number of cubes to show based on factory level
+    const cubesToShow = factoryLevel; // Show one cube per factory level
     const container2 = document.getElementById('game-container-2');
+
     if (factoryLevel > 0) {
         container2.style.display = 'block'; // Ensure the game container is shown
     }
+
+    // Show only the number of cubes corresponding to the current factory level
     for (let i = 1; i <= 20; i++) {
         const cube = document.getElementById(`cube-${i}`);
         if (i <= cubesToShow) {
@@ -103,4 +106,5 @@ export function updateGameContainer2(factoryLevel) {
         }
     }
 }
+
 
