@@ -165,6 +165,10 @@ export function initializeGame() {
     };
 
     document.getElementById('factory-button').onclick = () => {
+        if (factoryLevel >= 20) {
+            alert('Factory cannot be upgraded beyond level 20!');
+            return; // Prevent further upgrades
+        }
         if (gold >= factoryCost) {
             gold -= factoryCost;
             factoryLevel += 1;
