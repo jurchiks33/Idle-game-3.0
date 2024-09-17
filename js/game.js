@@ -179,6 +179,7 @@ export function initializeGame() {
             updateGameContainer2(factoryLevel);
         }
     };
+    
 
     // Bind skill upgrade buttons
     for (let i = 1; i <= 20; i++) {
