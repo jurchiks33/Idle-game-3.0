@@ -20,3 +20,21 @@ const upgrades =
                dependencies: []},
     // add more here as needed
 }
+
+// function for specific upgrades
+function upgrade(upgradeKey)
+{
+    const upgrade = upgrades[upgradeKey];
+    if (upgrade.level >= upgrade.maxLevel) 
+    {
+        alert('Maximum level reached!');
+        return;
+    }
+    if (gold >= upgrade.cost)
+    {
+        gold -= upgrade.cost;
+        upgrade.level += 1;
+        upgrade.cost = Math.round(upgrade.cost * upgrade.multiplier);
+        updateUpgradeDisplay(upgradeKey);
+    }
+}
