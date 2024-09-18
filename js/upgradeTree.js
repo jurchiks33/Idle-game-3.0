@@ -66,3 +66,6 @@ function initializeUpgradeTree()
         upgradeContainer.appendChild(button);
     });
 }
+
+
+export { initializeUpgradeTree };
