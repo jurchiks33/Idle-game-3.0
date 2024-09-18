@@ -174,3 +174,10 @@ button:hover {
 #cube-18 { background-image: url('../images/factory2.jpg');}
 #cube-19 { background-image: url('../images/factory2.jpg');}
 #cube-20 { background-image: url('../images/factory2.jpg');}
+
+#upgrade-tree-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
