@@ -43,9 +43,13 @@ function upgrade(upgradeKey)
 function updateUpgradeDisplay(upgradeKey)
 {
     const upgrade = upgrades[upgradeKey]
-    {
         document.getElementById(`${upgradeKey}-button`).
         innerText = `Upgrade ${upgradeKey} 
         (${upgrade.cost} Gold) - Level: ${upgrade.level}`;
-    }
+        if (upgrade.level >= upgrade.maxLevel)
+        {
+            document.getElementById(`${upgradeKey}-button`).innerText = `Maximum Level Reached`;
+            document.getElementById(`${upgradeKey}-button`).disabled = true; // Disable the button
+        }
 }
+
