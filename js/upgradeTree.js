@@ -38,3 +38,14 @@ function upgrade(upgradeKey)
         updateUpgradeDisplay(upgradeKey);
     }
 }
+
+// function to update UI for upgrades
+function updateUpgradeDisplay(upgradeKey)
+{
+    const upgrade = upgrades[upgradeKey]
+    {
+        document.getElementById(`${upgradeKey}-button`).
+        innerText = `Upgrade ${upgradeKey} 
+        (${upgrade.cost} Gold) - Level: ${upgrade.level}`;
+    }
+}
