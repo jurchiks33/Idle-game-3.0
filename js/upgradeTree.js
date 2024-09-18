@@ -69,3 +69,6 @@ function initializeUpgradeTree()
 
 
 export { initializeUpgradeTree };
+
+
+//debug upgrade tree, most likely DOM element hasnt been rendered at the time of access it
