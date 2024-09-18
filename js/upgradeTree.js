@@ -53,3 +53,12 @@ function updateUpgradeDisplay(upgradeKey)
         }
 }
 
+// Initialize the upgrade UI elements
+function initializeUpgradeTree() 
+{
+    const upgradeContainer = document.getElementById('upgrade-tree-container');
+    Object.keys(upgrades).forEach((key) => 
+    {
+
+    }
+}
