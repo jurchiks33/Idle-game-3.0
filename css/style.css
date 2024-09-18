@@ -181,3 +181,8 @@ button:hover {
     margin-top: 20px;
 }
 
+#upgrade-tree-container button {
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 14px;
+}
