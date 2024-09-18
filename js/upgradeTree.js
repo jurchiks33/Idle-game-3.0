@@ -59,6 +59,10 @@ function initializeUpgradeTree()
     const upgradeContainer = document.getElementById('upgrade-tree-container');
     Object.keys(upgrades).forEach((key) => 
     {
-
-    }
+        const button = document.createElement('button');
+        button.id = `${key}-button`;
+        button.onclick = () => upgrade(key);
+        updateUpgradeDisplay(key);
+        upgradeContainer.appendChild(button);
+    });
 }
